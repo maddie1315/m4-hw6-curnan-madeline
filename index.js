@@ -10,7 +10,7 @@ function getPizzaOrder() {
   alert("Hi, Thanks for ordering with Web to Pizza!")
   var pizza = {
     // set the 'cost' property to the basePrice
-    // YOUR CODE HERE
+    cost: basePrice
   }
 
   var crust = prompt(
@@ -21,7 +21,12 @@ function getPizzaOrder() {
   // HINT: You may wish to use .toLowerCase() and .trim()
   // if the user specified 'thick' crust, add thickCrustUpcharge
   // to pizza.cost
-  // YOUR CODE HERE
+
+  if (crust == 'thick') {
+    pizza.cost + thickCrustUpcharge;
+  } else {
+    pizza.cost = basePrice;
+  }
 
   var toppings = prompt("Please enter additional toppings (comma separated)")
   // HINT: prompt() will return an empty string "" if the user presses 'OK' without entering a value
@@ -29,23 +34,42 @@ function getPizzaOrder() {
   // if no toppings are given, make sure pizza.toppings is set to []
   // if the user has added toppings, add toppingsFee multiplied by
   // the number of toppings added to pizza.cost
-  // YOUR CODE HERE
+  toppings.split(",")
+  pizza.toppings = []
+  if (toppings) {
+    pizza.cost + (toppingsFee * toppings);
+  } else {
+    pizza.cost = basePrice;
+  }
 
   var extraCheese = confirm("Would you like extra cheese?")
   // HINT: confirm() returns a boolean
   // if the user specifies extra cheese, set pizza.extraCheese to true or false
   // if the user specifies extra cheese, add extraCheeseUpcharge to pizza.cost
-  // YOUR CODE HERE
+  if (extraCheese == true) {
+    pizza.extraCheese = true;
+    pizza.cost + extraCheeseUpcharge;
+  } else {
+    pizza.extraCheese = false;
+  }
 
   var isDelivery = confirm("Is your order for Delivery?")
   // HINT: confirm() returns a boolean
   // if order is for delivery, set pizza.saleType to "delivery"
   // if order is NOT for delivery, set pizza.saleType to "take-out"
   // if order if for delivery, add deliveryFee to pizza.cost
-  // YOUR CODE HERE
+  if (isDelivery == true) {
+    pizza.saleType = delivery;
+    pizza.cost + deliveryFee;
+  } else {
+    pizza.saleType = take-out;
+  }
+
 
   return pizza
 }
+
+getPizzaOrder();
 
 // This function is attached to the Order Now Button
 // This function is COMPLETE. No work to do here
